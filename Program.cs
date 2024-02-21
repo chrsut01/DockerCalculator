@@ -10,5 +10,8 @@ class Program
         // Example usage
         var result = calculator.Add(5, 3);
         Console.WriteLine($"Result: {result}");
+
+        var result2 = calculator.Multiply(5, 3);
+        Console.WriteLine($"Result: {result2}");
     }
 }
