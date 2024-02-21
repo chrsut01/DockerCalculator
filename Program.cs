@@ -1,3 +1,14 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using DockerCalculator;
 
-Console.WriteLine("Hello, World!");
+class Program
+{
+    static void Main()
+    {
+        using var dbContext = new CalculatorDbContext();
+        var calculator = new Calculator(dbContext);
+
+        // Example usage
+        var result = calculator.Add(5, 3);
+        Console.WriteLine($"Result: {result}");
+    }
+}

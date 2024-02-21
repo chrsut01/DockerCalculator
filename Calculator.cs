@@ -1,24 +1,54 @@
-﻿namespace DockerCalculator;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace DockerCalculator;
 
 public class Calculator : ICalculator
 {
-    public double Add(double n1, double n2)
+    private readonly CalculatorDbContext _dbContext;
+
+    public Calculator(CalculatorDbContext dbContext)
     {
-        throw new NotImplementedException();
+        _dbContext = dbContext;
+    }
+    public double Add(double a, double b)
+    {
+        LogCalculation(a, b, "Add", a + b);
+        return a + b;
     }
 
-    public double Subtract(double n1, double n2)
+    public double Subtract(double a, double b)
     {
-        throw new NotImplementedException();
+        LogCalculation(a, b, "Subtract", a - b);
+        return a - b;
     }
 
-    public double Multiply(double n1, double n2)
+    public double Multiply(double a, double b)
     {
-        throw new NotImplementedException();
+        LogCalculation(a, b, "Multiply", a * b);
+        return a * b;   
     }
 
-    public double Divide(double n1, double n2)
+    public double Divide(double a, double b)
     {
-        throw new NotImplementedException();
+        if (b != 0){
+            LogCalculation(a, b, "Subtract", a / b);
+            return a / b;
+        }
+        else{
+            throw new DivideByZeroException("Cannot divide by zero.");;
+        }
+    }
+
+    private void LogCalculation(double number1, double number2, string @operator, double result)
+    {
+        var log = new DataLog
+        {
+            n1 = number1,
+            n2 = number2,
+            Operator = @operator,
+            Result = result,
+        };
+        _dbContext.DataLogs.Add(log);
+        _dbContext.SaveChanges();
     }
 }
