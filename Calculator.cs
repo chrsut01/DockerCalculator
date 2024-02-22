@@ -31,7 +31,7 @@ public class Calculator : ICalculator
     public double Divide(double a, double b)
     {
         if (b != 0){
-            LogCalculation(a, b, "Subtract", a / b);
+            LogCalculation(a, b, "Divide", a / b);
             return a / b;
         }
         else{

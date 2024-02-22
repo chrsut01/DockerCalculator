@@ -8,21 +8,14 @@ public class CalculatorDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        
-            // Build configuration
             var configBuilder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json");
 
             var configuration = configBuilder.Build();
-
-            // Get the connection string from appsettings.json
+        
             string connectionString = configuration.GetConnectionString("CalculatorDbContext");
 
             optionsBuilder.UseSqlServer(connectionString);
-
-        
-
     }
-
 }
