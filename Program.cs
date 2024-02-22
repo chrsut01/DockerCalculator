@@ -8,10 +8,10 @@ class Program
         var calculator = new Calculator(dbContext);
 
         // Example usage
-        var result = calculator.Add(5, 3);
-        Console.WriteLine($"Result: {result}");
+        var result = calculator.Add(12, 3);
+        Console.WriteLine($"Add Result: {result}");
 
-        var result2 = calculator.Multiply(5, 3);
-        Console.WriteLine($"Result: {result2}");
+        var result2 = calculator.Multiply(12, 3);
+        Console.WriteLine($"Multiply Result: {result2}");
     }
 }
